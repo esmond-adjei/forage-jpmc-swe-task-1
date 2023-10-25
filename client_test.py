@@ -12,13 +12,13 @@ class ClientTest(unittest.TestCase):
         ]
         """ ------------ Add the assertion below ------------ """
         stock, bid_price, ask_price, price = getDataPoint(quotes[0])
-        self.assertEqual(price, 120.48)
+        self.assertEqual(price, (bid_price + ask_price) / 2)
         self.assertEqual(stock, 'ABC')
         self.assertEqual(bid_price, 120.48)
         self.assertEqual(ask_price, 121.2)
 
         stock, bid_price, ask_price, price = getDataPoint(quotes[1])
-        self.assertEqual(price, 117.87)
+        self.assertEqual(price, (bid_price + ask_price) / 2)
         self.assertEqual(stock, 'DEF')
         self.assertEqual(bid_price, 117.87)
         self.assertEqual(ask_price, 121.68)

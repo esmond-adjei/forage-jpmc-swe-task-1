@@ -35,7 +35,7 @@ def getDataPoint(quote):
     stock = quote['stock']
     bid_price = float(quote['top_bid']['price'])
     ask_price = float(quote['top_ask']['price'])
-    price = bid_price
+    price = (bid_price + ask_price) / 2
     return stock, bid_price, ask_price, price
 
 
@@ -53,9 +53,11 @@ if __name__ == "__main__":
             QUERY.format(random.random())).read())
 
         """ ----------- Update to get the ratio --------------- """
+        prices = {}
         for quote in quotes:
             stock, bid_price, ask_price, price = getDataPoint(quote)
             print("Quoted %s at (bid:%s, ask:%s, price:%s)" %
                   (stock, bid_price, ask_price, price))
+            prices[stock] = price
 
-        print("Ratio %s" % getRatio(price, price))
+        print("Ratio %s" % getRatio(*(prices.values())))
